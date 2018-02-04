@@ -9,7 +9,7 @@ defmodule Catcasts.Plugs.SetUser do
   end
 
   def call(conn, _params) do
-    if conn.asigns[:user] do
+    if conn.assigns[:user] do
       conn
     else
       user_id = get_session(conn, :user_id)
