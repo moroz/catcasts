@@ -2,7 +2,7 @@ defmodule CatcastsWeb.AuthControllerTest do
   use CatcastsWeb.ConnCase
   alias Catcasts.{Repo, User}
 
-  @ueberauth_auth %{credentials: %{token: "papierzak2137420420420"},
+  @ueberauth_auth %{credentials: %{token: "papierzak2137420420"},
                     info: %{email: "papierz@2137.com", first_name: "Jan",
                             last_name: "Paweł"},
                     provider: :google}

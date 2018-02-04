@@ -43,6 +43,7 @@ defmodule Catcasts.Mixfile do
       {:cowboy, "~> 1.0"},
       {:ueberauth, "~> 0.4"},
       {:ueberauth_google, "~> 0.5"},
+      {:ex_machina, "~> 2.0", only: :test},
       {:mix_test_watch, "~> 0.5", only: :dev, runtime: false}
     ]
   end
