@@ -2,7 +2,7 @@ defmodule CatcastsWeb.VideoController do
   use CatcastsWeb, :controller
 
   alias Catcasts.Videos
-  alias Catcasts.Videos.Video
+  alias Catcasts.Videos.{Video, YoutubeData}
 
   def index(conn, _params) do
     videos = Videos.list_videos()
@@ -15,13 +15,15 @@ defmodule CatcastsWeb.VideoController do
   end
 
   def create(conn, %{"video" => video_params}) do
-    case Videos.create_video(video_params) do
-      {:ok, video} ->
+    case YoutubeData.has_valid_regex?(video_params) do
+      nil ->
+        changeset = Video.changeset(%Video{}, video_params)
+
         conn
-        |> put_flash(:info, "Video created successfully.")
-        |> redirect(to: video_path(conn, :show, video))
-      {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        |> put_flash(:error, "Invalid YouTube URL")
+        |> render("new.html", changeset: changeset)
+      regex ->
+        YoutubeData.create_or_show_video(conn, regex)
     end
   end
 
