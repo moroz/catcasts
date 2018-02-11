@@ -1,0 +1,33 @@
+<h2>Show Video</h2>
+
+<ul>
+
+  <li>
+    <strong>Video:</strong>
+    <%= @video.video_id %>
+  </li>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @video.title %>
+  </li>
+
+  <li>
+    <strong>Duration:</strong>
+    <%= @video.duration %>
+  </li>
+
+  <li>
+    <strong>Thumbnail:</strong>
+    <%= @video.thumbnail %>
+  </li>
+
+  <li>
+    <strong>View count:</strong>
+    <%= @video.view_count %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: video_path(@conn, :edit, @video) %></span>
+<span><%= link "Back", to: video_path(@conn, :index) %></span>
