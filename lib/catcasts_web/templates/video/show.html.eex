@@ -29,5 +29,4 @@
 
 </ul>
 
-<span><%= link "Edit", to: video_path(@conn, :edit, @video) %></span>
 <span><%= link "Back", to: video_path(@conn, :index) %></span>

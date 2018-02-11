@@ -1,5 +1,15 @@
-<h2>New Video</h2>
-
-<%= render "form.html", Map.put(assigns, :action, video_path(@conn, :create)) %>
-
-<span><%= link "Back", to: video_path(@conn, :index) %></span>
+<div class="grid video-index">
+  <div class="medium-8 medium-offset-2 columns">
+    <div class="callout secondary">
+      <div>
+        <h2>Add a video</h2>
+        <div>
+          <%= render "form.html", changeset: @changeset, action: video_path(@conn, :create) %>
+        </div>
+        <div>
+          <%= link "Back", to: video_path(@conn, :index), class: "button tiny" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
