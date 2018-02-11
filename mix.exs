@@ -44,6 +44,8 @@ defmodule Catcasts.Mixfile do
       {:ueberauth, "~> 0.4"},
       {:ueberauth_google, "~> 0.5"},
       {:ex_machina, "~> 2.0", only: :test},
+      {:poison, "~> 3.1"},
+      {:httpoison, "~> 0.13"},
       {:mix_test_watch, "~> 0.5", only: :dev, runtime: false}
     ]
   end
