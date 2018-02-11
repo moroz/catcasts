@@ -4,8 +4,8 @@ defmodule Catcasts.Videos.YoutubeData do
 
   alias Catcasts.Videos.Video
 
-  def has_valid_regex?(video_params) do
-    Regex.run(~r/(?:youtube\.com\/\S*(?:(?:\/e(?:mbed))?\/|watch(?:\S*&?v\=))|youtu\.be\/)([a-zA-Z0-9_-]{6,11})/ video_params["video_id"])
+  def has_valid_regex?(%{"video_id" => video_id}) do
+    Regex.run(~r/(?:youtube\.com\/\S*(?:(?:\/e(?:mbed))?\/|watch(?:\S*&?v\=))|youtu\.be\/)([a-zA-Z0-9_-]{6,11})/, video_id)
   end
 
   def create_or_show_video(conn, regex) do
@@ -51,7 +51,7 @@ defmodule Catcasts.Videos.YoutubeData do
     Poison.decode!(json_data.body, keys: :atoms)
   end
 
-  defp get_video_data(video)
+  defp get_video_data(video) do
     hd(video.items)
   end
 
@@ -63,6 +63,12 @@ defmodule Catcasts.Videos.YoutubeData do
 
     {_status, time} = Time.new(hours, minutes, seconds)
     Time.to_string(time)
+  end
+
+  defp create_video_attrs(duration, video_data) do
+    %{duration: duration, thumbnail: video_data.snippet.thumbnails.high.url,
+      title: video_data.snippet.title, video_id: video_data.id,
+      view_count: String.to_integer(video_data.statistics.viewCount)}
   end
 
   defp create_changeset(conn, video_attrs) do
