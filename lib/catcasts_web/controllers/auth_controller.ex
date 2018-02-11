@@ -20,7 +20,7 @@ defmodule CatcastsWeb.AuthController do
         conn
         |> put_flash(:info, "Thank you for signing in!")
         |> put_session(:user_id, user.id)
-        |> redirect(to: page_path(conn, :index))
+        |> redirect(to: video_path(conn, :index))
       {:error, _reason} ->
         conn
         |> put_flash(:error, "Error signing in.")
