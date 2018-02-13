@@ -2,7 +2,7 @@ defmodule Catcasts.User do
   use Ecto.Schema
   import Ecto.Changeset
   alias Catcasts.User
-
+  alias Catcasts.Videos.Video
 
   schema "users" do
     field :email, :string
@@ -10,6 +10,7 @@ defmodule Catcasts.User do
     field :last_name, :string
     field :provider, :string
     field :token, :string
+    has_many :videos, Video
 
     timestamps()
   end
